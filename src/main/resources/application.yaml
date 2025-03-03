@@ -5,3 +5,6 @@ spring:
 stripe:
   api:
     enabled: true
+
+
+payment-gateway-default: stripe

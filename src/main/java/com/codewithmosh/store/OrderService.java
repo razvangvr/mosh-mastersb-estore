@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class OrderService {
 
     private final NotificationManager notificationManager;
@@ -25,9 +25,9 @@ public class OrderService {
      * But This is no longer necessary if our Class has a Single
      * Constructor
      */
-    @Autowired
+//    @Autowired
     public OrderService(
-            @Qualifier("paypal") PaymentService paymentService,
+           /* @Qualifier("paypal")*/ PaymentService paymentService,
             NotificationManager notificationManager) {
         this.paymentService = paymentService;
 
