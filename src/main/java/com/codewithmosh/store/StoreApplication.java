@@ -14,6 +14,8 @@ public class StoreApplication {
         OrderService orderService = applicationContext.getBean(OrderService.class);
 
         orderService.placeOrder();
+
+        var heavyResource = applicationContext.getBean(HeavyResource.class);
     }
 
 }

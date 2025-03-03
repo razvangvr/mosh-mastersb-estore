@@ -29,6 +29,8 @@ public class OrderService {
     public OrderService(
            /* @Qualifier("paypal")*/ PaymentService paymentService,
             NotificationManager notificationManager) {
+        System.out.println("OrderService CREATED");
+
         this.paymentService = paymentService;
 
         this.notificationManager = notificationManager;
