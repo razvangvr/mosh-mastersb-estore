@@ -1,6 +1,9 @@
 package com.codewithmosh.store;
 
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class OrderService {
 
     private final PaymentService paymentService;
