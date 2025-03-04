@@ -1,0 +1,17 @@
+version: "3"
+services:
+  estore-mysql:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: store
+      MYSQL_USER: estore
+      MYSQL_PASSWORD: 'estore'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      - 3606:3306
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+
