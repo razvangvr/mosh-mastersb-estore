@@ -8,3 +8,6 @@ stripe:
 
 
 payment-gateway-default: stripe
+
+mail:
+  host: "https://smtp.gmail.com"

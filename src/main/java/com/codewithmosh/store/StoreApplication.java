@@ -1,5 +1,7 @@
 package com.codewithmosh.store;
 
+import com.codewithmosh.store.user_registration.User;
+import com.codewithmosh.store.user_registration.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +18,11 @@ public class StoreApplication {
         orderService.placeOrder();
 
         var heavyResource = applicationContext.getBean(HeavyResource.class);
+
+        UserService userService = applicationContext.getBean(UserService.class);
+
+        userService.registerUser(new User(1L, "Razvan Gaston", "123", "raz@me.com"));
+        userService.registerUser(new User(1L, "Razvan Gaston", "123", "raz@me.com"));
     }
 
 }

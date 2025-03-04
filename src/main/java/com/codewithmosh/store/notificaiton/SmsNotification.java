@@ -8,4 +8,9 @@ public class SmsNotification implements NotificationService {
     public void send(String message) {
         System.out.println("Notification Sent via SMS");
     }
+
+    @Override
+    public void send(String message, String recipientEmail) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
