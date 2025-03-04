@@ -13,16 +13,6 @@ public class StoreApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(StoreApplication.class, args);
 
-        OrderService orderService = applicationContext.getBean(OrderService.class);
-
-        orderService.placeOrder();
-
-        var heavyResource = applicationContext.getBean(HeavyResource.class);
-
-        UserService userService = applicationContext.getBean(UserService.class);
-
-        userService.registerUser(new User(1L, "Razvan Gaston", "123", "raz@me.com"));
-        userService.registerUser(new User(1L, "Razvan Gaston", "123", "raz@me.com"));
     }
 
 }

@@ -2,6 +2,11 @@ spring:
   application:
     name: store
 
+  datasource:
+    url: jdbc:mysql://localhost:3606/store?createDatabaseIfNotExist=true
+    username: estore
+    password: estore
+
 stripe:
   api:
     enabled: true
