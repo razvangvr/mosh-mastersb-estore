@@ -9,11 +9,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "addresses")
 public class Address {
@@ -34,7 +42,13 @@ public class Address {
     @Column(nullable = false, name = "zipcode")
     private String zipCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    /**
+     * 'Owning side', or the Owner of the Relationship
+     * Which Entity is the Owner of the Relationship Here?
+     * So in this case, the AddressEntity is the owner of the Relationship
+     * */
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 }
