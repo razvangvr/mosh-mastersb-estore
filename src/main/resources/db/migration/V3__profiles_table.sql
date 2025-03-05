@@ -1,7 +1,7 @@
 -- auto-generated definition
 create table profiles
 (
-    id             bigint        primary key,
+    id             BIGINT        PRIMARY KEY,
     bio            TEXT          null,
     phone_number   VARCHAR(15)   null,
     date_of_birth  DATE          null,
