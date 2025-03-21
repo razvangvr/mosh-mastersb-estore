@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -65,6 +66,11 @@ public class User {
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
 
+
+    //Again, we have to tell Hibernate about
+    //the owner of the Relationship
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
 
     /**
      * Let's add a Helper Method Here

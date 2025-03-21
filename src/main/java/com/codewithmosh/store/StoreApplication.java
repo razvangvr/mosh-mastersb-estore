@@ -1,5 +1,6 @@
 package com.codewithmosh.store;
 
+import com.codewithmosh.store.entities.Profile;
 import com.codewithmosh.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +17,15 @@ public class StoreApplication {
                 .email("me@me.com")
                 .password("password")
                 .build();
-        /*var user = new User();*/
-        user.setName("John");
 
         user.addTag("tag1");
+
+        var profile = Profile.builder()
+                .bio("my Beautiful Life")
+                .build();
+
+        user.setProfile(profile);
+        profile.setUser(user);
 
         System.out.println(user);
     }
