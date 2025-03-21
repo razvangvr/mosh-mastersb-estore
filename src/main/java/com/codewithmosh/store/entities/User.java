@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,7 +19,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @ToString
 @AllArgsConstructor
@@ -50,6 +55,17 @@ public class User {
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_tags",
+            //
+            joinColumns = @JoinColumn( name = "user_id"),
+            inverseJoinColumns = @JoinColumn( name = "tag_id")
+    )
+    private Set<Tag> tags = new HashSet<>();
+
+
     /**
      * Let's add a Helper Method Here
      * */
@@ -61,5 +77,16 @@ public class User {
     public void removeAddress(Address address) {
         addresses.remove(address);
         address.setUser(null);
+    }
+
+    public void addTag(String tag) {
+        var aTag = new Tag("tag1");
+        getTags().add(aTag);//User knows about the Tag
+        aTag.getUsers().add(this);//Now we should tell Tag about the User
+    }
+
+    public void removeTag(Tag tag) {
+        getTags().remove(tag);
+        tag.getUsers().remove(this);
     }
 }
