@@ -2,8 +2,11 @@ package com.codewithmosh.store.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,4 +29,11 @@ public class Product {
      * */
     @JoinColumn(name = "category_id")
     private Category category;
+
+    /**
+     * This product is wished be following users
+     * */
+    @ManyToMany(mappedBy = "wishList")
+    @ToString.Exclude
+    private Set<User> users = new HashSet<>();
 }
