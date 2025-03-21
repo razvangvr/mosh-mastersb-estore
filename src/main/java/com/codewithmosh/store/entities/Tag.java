@@ -9,7 +9,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -26,7 +28,8 @@ public class Tag {
 
 
     @ManyToMany(mappedBy = "tags")
-    private Set<User> users;
+    @ToString.Exclude
+    private Set<User> users = new HashSet<>();
 
     public Tag(String name) {
         this.name = name;

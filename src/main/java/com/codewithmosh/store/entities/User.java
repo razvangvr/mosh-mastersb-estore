@@ -59,10 +59,10 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "user_tags",
-            //
             joinColumns = @JoinColumn( name = "user_id"),
             inverseJoinColumns = @JoinColumn( name = "tag_id")
     )
+    @Builder.Default
     private Set<Tag> tags = new HashSet<>();
 
 
@@ -81,12 +81,12 @@ public class User {
 
     public void addTag(String tag) {
         var aTag = new Tag("tag1");
-        getTags().add(aTag);//User knows about the Tag
+        tags.add(aTag);//User knows about the Tag
         aTag.getUsers().add(this);//Now we should tell Tag about the User
     }
 
     public void removeTag(Tag tag) {
-        getTags().remove(tag);
+        tags.remove(tag);
         tag.getUsers().remove(this);
     }
 }
