@@ -72,7 +72,7 @@ public class User {
             joinColumns = @JoinColumn( name = "user_id"),
             inverseJoinColumns = @JoinColumn( name = "product_id")
     )
-    private Set<Product> wishList = new HashSet<>();
+    private Set<Product> wishlist = new HashSet<>();
 
 
     //Again, we have to tell Hibernate about

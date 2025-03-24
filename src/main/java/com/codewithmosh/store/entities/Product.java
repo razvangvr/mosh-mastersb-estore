@@ -33,7 +33,7 @@ public class Product {
     /**
      * This product is wished be following users
      * */
-    @ManyToMany(mappedBy = "wishList")
+    @ManyToMany(mappedBy = "wishlist")
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
 }
