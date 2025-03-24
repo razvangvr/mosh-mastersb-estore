@@ -7,4 +7,6 @@ spring:
     username: estore
     password: estore
 
+  jpa:
+    show-sql: true
 
