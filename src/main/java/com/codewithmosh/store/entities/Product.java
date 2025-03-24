@@ -30,10 +30,10 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    /**
-     * This product is wished be following users
-     * */
-    @ManyToMany(mappedBy = "wishlist")
+// In reality, once we have a Product
+// We don't need to show all the users who have that Product in their wishlist,
+// So there is no need to Navigate from a Product to a List of Users
+/*    @ManyToMany(mappedBy = "wishlist")
     @ToString.Exclude
-    private Set<User> users = new HashSet<>();
+    private Set<User> users = new HashSet<>(); */
 }
