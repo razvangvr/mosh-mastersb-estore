@@ -7,12 +7,4 @@ spring:
     username: estore
     password: estore
 
-stripe:
-  api:
-    enabled: true
 
-
-payment-gateway-default: stripe
-
-mail:
-  host: "https://smtp.gmail.com"
