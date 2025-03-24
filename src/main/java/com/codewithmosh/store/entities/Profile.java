@@ -43,8 +43,8 @@ public class Profile {
 
     @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @MapsId//This Tells Hibernate to use the Same Column as PrimaryKey and FK
+    @JoinColumn(name = "id")
+    @MapsId// '@MapsId' - This Tells Hibernate to use the Same Column as PrimaryKey and FK
     //For this Entity
     private User user;
 }

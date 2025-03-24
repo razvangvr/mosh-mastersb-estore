@@ -19,6 +19,9 @@ public class StoreApplication {
 
         userRepository.save(user);
 
+        User user1 = userRepository.findById(1L).orElseThrow();
+       System.out.println(user1.getEmail());
+
     }
 
     private static void playWithUser() {
