@@ -4,6 +4,7 @@ import com.codewithmosh.store.StoreApplication;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,8 @@ public class UserService {
 
     private final EntityManager entityManager;
 
-    public void showEntityStates(){
+    @Transactional
+    public void showEntityStates() {
         var user = StoreApplication.basicUser();
         inspectEntityState(user);
         //Save User Transaction, while the Transaction is Active we're gonna have a PersitenceContext
@@ -27,14 +29,14 @@ public class UserService {
         /**
          * TRANSIENT/DETACHED  State
          * Hibernate: insert into users (email,name,password) values (?,?,?)
-         * TRANSIENT/DETACHED  State
+         * PERSISTENT Entity State
          * */
     }
 
-    private void inspectEntityState(User user){
-        if(entityManager.contains(user)){
+    private void inspectEntityState(User user) {
+        if (entityManager.contains(user)) {
             System.out.println("PERSISTENT Entity State");
-        }else
+        } else
             System.out.println("TRANSIENT/DETACHED  State");
     }
 
