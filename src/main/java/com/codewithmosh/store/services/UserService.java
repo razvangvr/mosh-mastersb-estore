@@ -20,7 +20,15 @@ public class UserService {
         inspectEntityState(user);
         //Save User Transaction, while the Transaction is Active we're gonna have a PersitenceContext
         userRepository.save(user);
+        //The Transaction is Active ONLY while `repository.save` Method is Executed
+        //So After the Method is executed,the Transaction Completes, PersistenceContext is removed
+        //And Our Entity Becomes Detached
         inspectEntityState(user);
+        /**
+         * TRANSIENT/DETACHED  State
+         * Hibernate: insert into users (email,name,password) values (?,?,?)
+         * TRANSIENT/DETACHED  State
+         * */
     }
 
     private void inspectEntityState(User user){
