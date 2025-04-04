@@ -42,7 +42,7 @@ public class Address {
     @Column(nullable = false, name = "zipcode")
     private String zipCode;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     /**
      * 'Owning side', or the Owner of the Relationship
      * Which Entity is the Owner of the Relationship Here?

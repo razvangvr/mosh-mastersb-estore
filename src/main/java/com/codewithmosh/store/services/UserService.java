@@ -1,13 +1,17 @@
 package com.codewithmosh.store.services;
 
 import com.codewithmosh.store.StoreApplication;
+import com.codewithmosh.store.entities.Address;
 import com.codewithmosh.store.entities.User;
+import com.codewithmosh.store.repositories.AddressRepository;
 import com.codewithmosh.store.repositories.ProfileRepository;
 import com.codewithmosh.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +21,7 @@ public class UserService {
     private final ProfileRepository profileRepository;
 
     private final EntityManager entityManager;
+    private final AddressRepository addressRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -48,6 +53,10 @@ public class UserService {
 
         //Caused by: org.hibernate.LazyInitializationException
         System.out.println(profile.getUser().getEmail());
+    }
+
+    public void fetchAddresses() {
+         var address = addressRepository.findById(1L);
     }
 
 }

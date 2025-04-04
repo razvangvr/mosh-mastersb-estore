@@ -12,9 +12,11 @@ public class StoreApplication {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(StoreApplication.class, args);
-
         var userService = applicationContext.getBean(UserService.class);
-        userService.showRelatedEntities();
+
+//        userService.showRelatedEntities();
+
+        userService.fetchAddresses();
 
     }
 
