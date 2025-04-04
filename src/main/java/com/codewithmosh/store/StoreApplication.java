@@ -3,6 +3,7 @@ package com.codewithmosh.store;
 import com.codewithmosh.store.entities.Profile;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.repositories.UserRepository;
+import com.codewithmosh.store.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,14 +14,8 @@ public class StoreApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(StoreApplication.class, args);
 
-        var userRepository = applicationContext.getBean(UserRepository.class);
-
-        var user = basicUser();
-
-        userRepository.save(user);
-
-        User user1 = userRepository.findById(1L).orElseThrow();
-       System.out.println(user1.getEmail());
+        var userService = applicationContext.getBean(UserService.class);
+        userService.showEntityStates();
 
     }
 
@@ -39,7 +34,7 @@ public class StoreApplication {
         System.out.println(user);
     }
 
-    private static User basicUser() {
+    public static User basicUser() {
         var user = User.builder()
                 .name("John")
                 .email("me@me.com")
