@@ -15,9 +15,9 @@ public class StoreApplication {
         var userService = applicationContext.getBean(UserService.class);
 
 //        userService.showRelatedEntities();
+//        userService.fetchAddresses();
 
-        userService.fetchAddresses();
-
+        userService.persistRelated();
     }
 
     private static void playWithUser() {

@@ -60,4 +60,23 @@ public class UserService {
         Address address = addressRepository.findById(1L).orElseThrow();
     }
 
+    public void persistRelated() {
+        User userWithAddress = StoreApplication.basicUser();
+
+        Address myAddress = Address.builder()
+                .state("Street")
+                .city("city")
+                .state("state")
+                .build();
+
+        userWithAddress.addAddress(myAddress);
+
+        /**
+         * Hibernate: insert into users (email,name,password) values (?,?,?)
+         * ONLY, USER IS PERSISTED
+         */
+        userRepository.save(userWithAddress);
+
+    }
+
 }
