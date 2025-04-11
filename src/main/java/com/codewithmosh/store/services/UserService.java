@@ -2,6 +2,7 @@ package com.codewithmosh.store.services;
 
 import com.codewithmosh.store.StoreApplication;
 import com.codewithmosh.store.entities.Address;
+import com.codewithmosh.store.entities.Profile;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.repositories.AddressRepository;
 import com.codewithmosh.store.repositories.ProfileRepository;
@@ -49,14 +50,14 @@ public class UserService {
 
     @Transactional
     public void showRelatedEntities() {
-        var profile = profileRepository.findById(2L).orElseThrow();//Transaction Terminates when `findById` Returns
+        Profile profile = profileRepository.findById(2L).orElseThrow();//Transaction Terminates when `findById` Returns
 
         //Caused by: org.hibernate.LazyInitializationException
         System.out.println(profile.getUser().getEmail());
     }
 
     public void fetchAddresses() {
-         var address = addressRepository.findById(1L);
+        Address address = addressRepository.findById(1L).orElseThrow();
     }
 
 }
