@@ -1,6 +1,7 @@
 package com.codewithmosh.store.entities;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,9 +51,8 @@ public class User {
 
     /**
      * We have to tell Hibernate who's the Owner of the Relationship
-     *
      * */
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 

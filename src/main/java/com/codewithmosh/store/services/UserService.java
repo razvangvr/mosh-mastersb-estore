@@ -66,7 +66,9 @@ public class UserService {
         Address myAddress = Address.builder()
                 .state("Street")
                 .city("city")
+                .street("street")
                 .state("state")
+                .zipCode("zipCode")
                 .build();
 
         userWithAddress.addAddress(myAddress);
