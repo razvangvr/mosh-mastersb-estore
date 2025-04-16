@@ -10,7 +10,7 @@ services:
       # Password for root access
       MYSQL_ROOT_PASSWORD: 'admin'
     ports:
-      - 3606:3306
+      - 3616:3306
     expose:
       # Opens port 3306 on the container
       - '3306'

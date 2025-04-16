@@ -3,7 +3,7 @@ spring:
     name: store
 
   datasource:
-    url: jdbc:mysql://localhost:3606/store?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3616/store?createDatabaseIfNotExist=true
     username: estore
     password: estore
 
