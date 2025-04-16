@@ -32,10 +32,10 @@ public class Profile {
     @Column(name = "bio")
     private String bio;
 
-    @Column(nullable = false, name = "phone_number")
+    @Column(nullable = true, name = "phone_number")
     private String phoneNumber;
 
-    @Column(nullable = false, name = "date_of_birth")
+    @Column(nullable = true, name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @Column(name = "loyalty_points")

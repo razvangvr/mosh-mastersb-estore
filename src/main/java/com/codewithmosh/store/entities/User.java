@@ -51,8 +51,8 @@ public class User {
 
     /**
      * We have to tell Hibernate who's the Owner of the Relationship
-     * */
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+     */
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
@@ -60,8 +60,8 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "user_tags",
-            joinColumns = @JoinColumn( name = "user_id"),
-            inverseJoinColumns = @JoinColumn( name = "tag_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
@@ -69,20 +69,20 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "wishlist",
-            joinColumns = @JoinColumn( name = "user_id"),
-            inverseJoinColumns = @JoinColumn( name = "product_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Set<Product> wishlist = new HashSet<>();
 
 
     //Again, we have to tell Hibernate about
     //the owner of the Relationship
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
 
     /**
      * Let's add a Helper Method Here
-     * */
+     */
     public void addAddress(Address address) {
         addresses.add(address);
         address.setUser(this);//Always set the Owning side
