@@ -17,8 +17,9 @@ public class StoreApplication {
 //        userService.showRelatedEntities();
 //        userService.fetchAddresses();
 //        userService.persistRelated();
+//        userService.deleteRelated(2L);
 
-        userService.deleteRelated(2L);
+        userService.deleteRelatedAddress(3L);
     }
 
     private static void playWithUser() {

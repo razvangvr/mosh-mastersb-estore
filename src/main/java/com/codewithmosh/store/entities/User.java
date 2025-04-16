@@ -52,7 +52,10 @@ public class User {
     /**
      * We have to tell Hibernate who's the Owner of the Relationship
      */
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 

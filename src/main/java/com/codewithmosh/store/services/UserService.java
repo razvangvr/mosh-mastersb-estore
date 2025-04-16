@@ -81,8 +81,32 @@ public class UserService {
 
     }
 
+    /**
+     * Delete Parent Entity
+     * */
     public void deleteRelated(long id) {
         userRepository.deleteById(id);
+    }
+
+    /**
+     * But what about deleting a User's Address ?
+     * */
+    @Transactional
+    //We apply the @Transactional annotation to keep the
+    //Transaction and the Persistence Context throughout this method
+    public void deleteRelatedAddress(long userId) {
+        var user = userRepository.findById(userId).orElseThrow();
+
+        Address address = user.getAddresses().stream().findFirst().orElseThrow();
+        user.removeAddress(address);
+        /*
+        When we remove an Address from the User:
+        address.setUser(null);
+        so we mark it as Orphan, So we need to update the JPA relation to
+        orphanRemoval = true// We tell Hibernate the Remove Orphan Entities
+        * */
+
+        userRepository.save(user);
     }
 
 }
