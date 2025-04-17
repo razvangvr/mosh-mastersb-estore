@@ -81,7 +81,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>10.18.2</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3606/store?createDatabaseIfNotExist=true</url>
+                    <url>jdbc:mysql://localhost:3616/store?createDatabaseIfNotExist=true</url>
                     <user>estore</user>
                     <password>estore</password>
                     <cleanDisabled>false</cleanDisabled>

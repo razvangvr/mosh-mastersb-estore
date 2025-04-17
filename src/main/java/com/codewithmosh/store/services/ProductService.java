@@ -55,4 +55,8 @@ public class ProductService {
 
         userRepository.save(user);
     }
+
+    public void deleteProduct(long productId) {
+        productRepository.deleteById(productId);
+    }
 }
