@@ -26,17 +26,21 @@ public class StoreApplication {
 //        userService.deleteRelated(2L);
 //        userService.deleteRelatedAddress(3L);
 
+//        Product product = basicProduct(10.99D);
+//        Category electronics = new Category();
+//        electronics.setName("Electronics");
+//        product.addCategory(electronics);
+//        productService.saveProduct(product);
+
+        productService.addProductToExistingCategory(1L, basicProduct(13.99D));
+    }
+
+    private static Product basicProduct(double price) {
         Product product = Product.builder()
                 .name("Product1")
-                .price(BigDecimal.valueOf(10.99))
+                .price(BigDecimal.valueOf(price))
                 .build();
-
-        Category electronics = new Category();
-        electronics.setName("Electronics");
-
-        product.addCategory(electronics);
-
-        productService.saveProduct(product);
+        return product;
     }
 
     private static void playWithUser() {
