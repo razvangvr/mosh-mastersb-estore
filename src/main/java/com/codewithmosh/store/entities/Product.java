@@ -1,5 +1,6 @@
 package com.codewithmosh.store.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     /**
      * Category Field in the Product Entity.
      * Product is the Owner of the Relationship

@@ -2,6 +2,9 @@ package com.codewithmosh.store.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,5 +20,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Product> products = new HashSet<>();
 }

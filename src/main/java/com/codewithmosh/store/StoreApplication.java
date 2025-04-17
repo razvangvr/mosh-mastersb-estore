@@ -28,7 +28,7 @@ public class StoreApplication {
 
         Product product = Product.builder()
                 .name("Product1")
-                .price(BigDecimal.ONE)
+                .price(BigDecimal.valueOf(10.99))
                 .build();
 
         Category electronics = new Category();
