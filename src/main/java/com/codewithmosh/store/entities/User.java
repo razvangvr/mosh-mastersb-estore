@@ -106,4 +106,9 @@ public class User {
         tags.remove(tag);
         tag.getUsers().remove(this);
     }
+
+    public void addFavoriteProduct(Product product) {
+        wishlist.add(product);
+
+    }
 }

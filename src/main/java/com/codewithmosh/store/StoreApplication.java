@@ -31,8 +31,9 @@ public class StoreApplication {
 //        electronics.setName("Electronics");
 //        product.addCategory(electronics);
 //        productService.saveProduct(product);
+//        productService.addProductToExistingCategory(1L, basicProduct(13.99D));
 
-        productService.addProductToExistingCategory(1L, basicProduct(13.99D));
+        productService.addAllProductsToUserWishList(3L);
     }
 
     private static Product basicProduct(double price) {
