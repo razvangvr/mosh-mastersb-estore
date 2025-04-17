@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -58,5 +59,12 @@ public class ProductService {
 
     public void deleteProduct(long productId) {
         productRepository.deleteById(productId);
+    }
+
+    //Whereever we have an Update Transaction with Custom Queries
+    // we should wrap our method call inside a Transaction
+    @Transactional
+    public void updatePriceInCategory(long categoryId, double newPrice) {
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(newPrice), (byte) categoryId);
     }
 }
