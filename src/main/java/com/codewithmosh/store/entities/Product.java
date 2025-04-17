@@ -1,14 +1,24 @@
 package com.codewithmosh.store.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "products")
 public class Product {
@@ -24,11 +34,17 @@ public class Product {
 
     @ManyToOne
     /**
-     * Category Field in the Product Entity
-     * is the Owner of the Relationship
+     * Category Field in the Product Entity.
+     * Product is the Owner of the Relationship
      * */
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public void addCategory(Category categ) {
+        this.category = categ;//set the Owning side
+        categ.getProducts().add(this);
+    }
+
 
 // In reality, once we have a Product
 // We don't need to show all the users who have that Product in their wishlist,
