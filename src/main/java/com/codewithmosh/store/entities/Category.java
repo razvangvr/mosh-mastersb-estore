@@ -3,6 +3,7 @@ package com.codewithmosh.store.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "categories")
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,8 @@ public class Category {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Product> products = new HashSet<>();
+
+    public Category(int categoryId) {
+        this.id = (byte) categoryId;
+    }
 }

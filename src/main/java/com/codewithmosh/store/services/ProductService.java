@@ -1,6 +1,7 @@
 package com.codewithmosh.store.services;
 
 import com.codewithmosh.store.ProductRepository;
+import com.codewithmosh.store.dtos.ProductSummary;
 import com.codewithmosh.store.entities.Category;
 import com.codewithmosh.store.entities.CategoryRepository;
 import com.codewithmosh.store.entities.Product;
@@ -69,8 +70,22 @@ public class ProductService {
     }
 
 
-    public List<Product> findByCategory(int categoryId) {
+    public List<Product> findByCategoryId(int categoryId) {
         List<Product> products = productRepository.findByCategory_Id((byte) categoryId);
+        products.forEach(System.out::println);
+        return products;
+    }
+
+    /**
+     * When we use Interface Projections a RunTimeProxy for the Interface is returned
+     * org.springframework.data.jpa.repository.query.AbstractJpaQuery$TupleConverter$TupleBackedMap@66f73d3d
+     * <pre>
+     * Hibernate: select p1_0.id,p1_0.name from products p1_0 where p1_0.category_id=?
+     * org.springframework.data.jpa.repository.query.AbstractJpaQuery$TupleConverter$TupleBackedMap@66f73d3d
+     * </pre>
+     * */
+    public List<ProductSummary> findByCategory(Category category) {
+        var products = productRepository.findByCategory(category);
         products.forEach(System.out::println);
         return products;
     }

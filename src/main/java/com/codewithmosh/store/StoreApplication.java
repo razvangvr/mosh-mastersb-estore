@@ -36,7 +36,8 @@ public class StoreApplication {
 //        productService.deleteProduct(6L);
 //        productService.updatePriceInCategory(1l, 100.99);
 
-        productService.findByCategory(1);
+//        productService.findByCategoryId(1);
+        productService.findByCategory(new Category(2));
     }
 
     private static Product basicProduct(double price) {
