@@ -67,4 +67,11 @@ public class ProductService {
     public void updatePriceInCategory(long categoryId, double newPrice) {
         productRepository.updatePriceByCategory(BigDecimal.valueOf(newPrice), (byte) categoryId);
     }
+
+
+    public List<Product> findByCategory(int categoryId) {
+        List<Product> products = productRepository.findByCategory_Id((byte) categoryId);
+        products.forEach(System.out::println);
+        return products;
+    }
 }

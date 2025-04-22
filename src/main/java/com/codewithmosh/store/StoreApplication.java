@@ -34,8 +34,9 @@ public class StoreApplication {
 //        productService.addProductToExistingCategory(1L, basicProduct(13.99D));
 //        productService.addAllProductsToUserWishList(3L);
 //        productService.deleteProduct(6L);
+//        productService.updatePriceInCategory(1l, 100.99);
 
-        productService.updatePriceInCategory(1l, 100.99);
+        productService.findByCategory(1);
     }
 
     private static Product basicProduct(double price) {
