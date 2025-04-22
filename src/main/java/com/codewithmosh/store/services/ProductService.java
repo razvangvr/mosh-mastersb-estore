@@ -2,6 +2,7 @@ package com.codewithmosh.store.services;
 
 import com.codewithmosh.store.ProductRepository;
 import com.codewithmosh.store.dtos.ProductSummary;
+import com.codewithmosh.store.dtos.ProductSummaryDTO;
 import com.codewithmosh.store.entities.Category;
 import com.codewithmosh.store.entities.CategoryRepository;
 import com.codewithmosh.store.entities.Product;
@@ -83,8 +84,14 @@ public class ProductService {
      * Hibernate: select p1_0.id,p1_0.name from products p1_0 where p1_0.category_id=?
      * org.springframework.data.jpa.repository.query.AbstractJpaQuery$TupleConverter$TupleBackedMap@66f73d3d
      * </pre>
+     *
+     * With Class Projections
+     * <pre>
+     *     Hibernate: select p1_0.id,p1_0.name from products p1_0 where p1_0.category_id=?
+     *      com.codewithmosh.store.dtos.ProductSummaryDTO@3d8bf514
+     * </pre>
      * */
-    public List<ProductSummary> findByCategory(Category category) {
+    public List<ProductSummaryDTO> findByCategory(Category category) {
         var products = productRepository.findByCategory(category);
         products.forEach(System.out::println);
         return products;
