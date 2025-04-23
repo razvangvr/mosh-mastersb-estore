@@ -15,5 +15,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     //Set attributePaths to the Name of the Related Entities you want to Load
     @EntityGraph(attributePaths = {"tags", "addresses"/*, "addresses.country"*/})
+    /**
+     * select u1_0.id,a1_0.user_id,a1_0.id,a1_0.city,a1_0.state,a1_0.street,a1_0.zipcode,u1_0.email,u1_0.name,u1_0.password,t1_0.user_id,t1_1.id,t1_1.name
+     * from users u1_0 left join addresses a1_0 on u1_0.id=a1_0.user_id
+     * */
     Optional<User> findByEmail(String email);
 }
