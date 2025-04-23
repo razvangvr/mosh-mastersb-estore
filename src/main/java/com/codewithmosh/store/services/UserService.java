@@ -60,6 +60,27 @@ public class UserService {
         Address address = addressRepository.findById(1L).orElseThrow();
     }
 
+    /**
+     * org.hibernate.TransientObjectException: persistent instance references an unsaved transient instance of 'com.codewithmosh.store.entities.Profile'
+     * (save the transient instance before flushing)
+     */
+    public void saveUserAndTags() {
+
+        User user = StoreApplication.userWithProfileAndTags();
+
+        Address myAddress = Address.builder()
+                .state("Street")
+                .city("city")
+                .street("street")
+                .state("state")
+                .zipCode("zipCode")
+                .build();
+
+        user.addAddress(myAddress);
+
+        userRepository.save(user);
+    }
+
     public void persistRelated() {
         User userWithAddress = StoreApplication.basicUser();
 
@@ -83,14 +104,14 @@ public class UserService {
 
     /**
      * Delete Parent Entity
-     * */
+     */
     public void deleteRelated(long id) {
         userRepository.deleteById(id);
     }
 
     /**
      * But what about deleting a User's Address ?
-     * */
+     */
     @Transactional
     //We apply the @Transactional annotation to keep the
     //Transaction and the Persistence Context throughout this method

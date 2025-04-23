@@ -1,6 +1,5 @@
 package com.codewithmosh.store;
 
-import com.codewithmosh.store.entities.Category;
 import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.entities.Profile;
 import com.codewithmosh.store.entities.User;
@@ -26,6 +25,8 @@ public class StoreApplication {
 //        userService.deleteRelated(2L);
 //        userService.deleteRelatedAddress(3L);
 
+        userService.saveUserAndTags();
+
 //        Product product = basicProduct(10.99D);
 //        Category electronics = new Category();
 //        electronics.setName("Electronics");
@@ -37,7 +38,7 @@ public class StoreApplication {
 //        productService.updatePriceInCategory(1l, 100.99);
 
 //        productService.findByCategoryId(1);
-        productService.findByCategory(new Category(2));
+//        productService.findByCategory(new Category(2));
     }
 
     private static Product basicProduct(double price) {
@@ -48,10 +49,10 @@ public class StoreApplication {
         return product;
     }
 
-    private static void playWithUser() {
+    public static User userWithProfileAndTags() {
         var user = basicUser();
 
-        user.addTag("tag1");
+        user.addTag("Top Spender");
 
         var profile = Profile.builder()
                 .bio("my Beautiful Life")
@@ -59,8 +60,8 @@ public class StoreApplication {
 
         user.setProfile(profile);
         profile.setUser(user);
-
         System.out.println(user);
+        return user;
     }
 
     public static User basicUser() {

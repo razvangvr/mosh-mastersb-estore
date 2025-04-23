@@ -60,7 +60,11 @@ public class User {
     private List<Address> addresses = new ArrayList<>();
 
 
-    @ManyToMany
+    //What if we want to load a User with its Tags?
+    //One way is to Set @ManyToMany(fetch = FetchType.EAGER) to Eager Loading
+    //But that means every time we load a User, the Tags will also be Loaded
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_tags",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -80,7 +84,7 @@ public class User {
 
     //Again, we have to tell Hibernate about
     //the owner of the Relationship
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Profile profile;
 
     /**
@@ -97,7 +101,7 @@ public class User {
     }
 
     public void addTag(String tag) {
-        var aTag = new Tag("tag1");
+        var aTag = new Tag(tag);
         tags.add(aTag);//User knows about the Tag
         aTag.getUsers().add(this);//Now we should tell Tag about the User
     }
