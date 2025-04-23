@@ -43,7 +43,9 @@ public class StoreApplication {
 //        productService.findByCategory(new Category(2));
 
 //        userService.fetchUser("me1@me.com");
-        userService.fetchUsers();
+//        userService.fetchUsers();
+
+        productService.findProductsByPriceRange();
 
     }
 

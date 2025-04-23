@@ -95,4 +95,9 @@ public class ProductService {
         products.forEach(System.out::println);
         return products;
     }
+
+    @Transactional
+    public void findProductsByPriceRange() {
+        productRepository.findByPriceRange(BigDecimal.valueOf(5), BigDecimal.valueOf(30)).forEach(System.out::println);
+    }
 }
