@@ -145,7 +145,11 @@ public class UserService {
     /*failed to lazily initialize a collection of role: com.codewithmosh.store.entities.User.addresses: could not initialize proxy - no Session*/
     @Transactional
     public void fetchUsers() {
-        Iterable<User> all = userRepository.findAll();
+        /**
+         * We only need the Addresses in this Piece of Code, I.E:
+         * Only on this Query
+         * */
+        Iterable<User> all = userRepository.findAllWithAddress();
         for (User user : all) {
             System.out.println("PRINT one user"+user);
             user.getAddresses().forEach(System.out::println);
