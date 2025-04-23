@@ -1,7 +1,6 @@
 package com.codewithmosh.store.services;
 
-import com.codewithmosh.store.ProductRepository;
-import com.codewithmosh.store.dtos.ProductSummary;
+import com.codewithmosh.store.repositories.ProductRepository;
 import com.codewithmosh.store.dtos.ProductSummaryDTO;
 import com.codewithmosh.store.entities.Category;
 import com.codewithmosh.store.entities.CategoryRepository;

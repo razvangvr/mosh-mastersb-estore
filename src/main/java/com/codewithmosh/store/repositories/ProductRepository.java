@@ -1,4 +1,4 @@
-package com.codewithmosh.store;
+package com.codewithmosh.store.repositories;
 
 import com.codewithmosh.store.dtos.ProductSummary;
 import com.codewithmosh.store.dtos.ProductSummaryDTO;
