@@ -18,14 +18,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -114,5 +112,13 @@ public class User {
     public void addFavoriteProduct(Product product) {
         wishlist.add(product);
 
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ", " +
+                "email = " + email + ")";
     }
 }

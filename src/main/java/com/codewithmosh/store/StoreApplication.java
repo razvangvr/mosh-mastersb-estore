@@ -43,9 +43,8 @@ public class StoreApplication {
 //        productService.findByCategoryId(1);
 //        productService.findByCategory(new Category(2));
 
-        Optional<User> userOptional = userService.fetchUser("me1@me.com");
-        User user = userOptional.orElseThrow();
-        System.out.println(user.getId());
+        userService.fetchUser("me1@me.com");
+
     }
 
     private static Product basicProduct(double price) {

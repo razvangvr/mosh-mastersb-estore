@@ -130,9 +130,15 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> fetchUser(String email) {
+    /*failed to lazily initialize a collection of role: com.codewithmosh.store.entities.User.addresses:*/
+    @Transactional
+    public User fetchUser(String email) {
 //        Optional<User> user = userRepository.findByEmail("me1@me.com");
-        Optional<User> user = userRepository.findByEmail(email);
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        User user = userOptional.orElseThrow();
+        System.out.println(user);
+
         return user;
     }
 
