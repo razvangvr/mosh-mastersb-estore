@@ -10,9 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @SpringBootApplication
 public class StoreApplication {
+
+    public static final String EMAIL = "me@me.com";
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(StoreApplication.class, args);
@@ -25,7 +28,7 @@ public class StoreApplication {
 //        userService.deleteRelated(2L);
 //        userService.deleteRelatedAddress(3L);
 
-        userService.saveUserAndTags();
+//        userService.saveUserAndTags();
 
 //        Product product = basicProduct(10.99D);
 //        Category electronics = new Category();
@@ -39,6 +42,10 @@ public class StoreApplication {
 
 //        productService.findByCategoryId(1);
 //        productService.findByCategory(new Category(2));
+
+        Optional<User> userOptional = userService.fetchUser("me1@me.com");
+        User user = userOptional.orElseThrow();
+        System.out.println(user.getId());
     }
 
     private static Product basicProduct(double price) {
@@ -67,7 +74,7 @@ public class StoreApplication {
     public static User basicUser() {
         var user = User.builder()
                 .name("John")
-                .email("me@me.com")
+                .email(EMAIL)
                 .password("password")
                 .build();
         return user;

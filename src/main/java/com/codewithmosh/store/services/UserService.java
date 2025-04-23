@@ -130,4 +130,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public Optional<User> fetchUser(String email) {
+//        Optional<User> user = userRepository.findByEmail("me1@me.com");
+        Optional<User> user = userRepository.findByEmail(email);
+        return user;
+    }
+
 }
