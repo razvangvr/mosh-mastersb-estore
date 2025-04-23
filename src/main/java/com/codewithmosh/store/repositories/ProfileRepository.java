@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
-    @Query("select p from Profile p where p.loyaltyPoints >= :loyaltyVal")
+    @Query("select p, p.user from Profile p where p.loyaltyPoints >= :loyaltyVal")
     List<Profile> findProfilesByLoyaltyPointsGreaterThan(@Param("loyaltyVal") Integer loyaltyVal);
 }
