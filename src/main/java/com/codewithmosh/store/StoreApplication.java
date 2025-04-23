@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -43,7 +42,8 @@ public class StoreApplication {
 //        productService.findByCategoryId(1);
 //        productService.findByCategory(new Category(2));
 
-        userService.fetchUser("me1@me.com");
+//        userService.fetchUser("me1@me.com");
+        userService.fetchUsers();
 
     }
 
