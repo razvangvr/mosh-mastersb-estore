@@ -8,10 +8,13 @@ import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.repositories.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +37,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void addProductToExistingCategory(long categoryId,Product product) {
+    public void addProductToExistingCategory(long categoryId, Product product) {
         //Retrieve existing Category
         Category category = categoryRepository.findById((byte) categoryId).orElseThrow();
 
@@ -83,13 +86,13 @@ public class ProductService {
      * Hibernate: select p1_0.id,p1_0.name from products p1_0 where p1_0.category_id=?
      * org.springframework.data.jpa.repository.query.AbstractJpaQuery$TupleConverter$TupleBackedMap@66f73d3d
      * </pre>
-     *
+     * <p>
      * With Class Projections
      * <pre>
      *     Hibernate: select p1_0.id,p1_0.name from products p1_0 where p1_0.category_id=?
      *      com.codewithmosh.store.dtos.ProductSummaryDTO@3d8bf514
      * </pre>
-     * */
+     */
     public List<ProductSummaryDTO> findByCategory(Category category) {
         var products = productRepository.findByCategory(category);
         products.forEach(System.out::println);
@@ -99,5 +102,21 @@ public class ProductService {
     @Transactional
     public void findProductsByPriceRange() {
         productRepository.findByPriceRange(BigDecimal.valueOf(5), BigDecimal.valueOf(30)).forEach(System.out::println);
+    }
+
+    @Transactional
+    public List<Product> fetchProducts(String productName) {
+        var product = new Product();
+        product.setName(productName);
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var productExample = Example.of(product, matcher);
+
+
+        List<Product> products = productRepository.findAll(productExample);
+        products.forEach(System.out::println);
+
+        return products;
     }
 }

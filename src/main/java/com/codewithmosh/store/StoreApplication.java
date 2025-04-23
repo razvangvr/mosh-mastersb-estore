@@ -50,8 +50,11 @@ public class StoreApplication {
 
 //        productService.findProductsByPriceRange();
 
-        List<Profile> aboveLoyaltyValue = profileService.findAboveLoyaltyValue(7);
-        System.out.println("aboveLoyaltyValue 7 => "+aboveLoyaltyValue.size());
+//        List<Profile> aboveLoyaltyValue = profileService.findAboveLoyaltyValue(7);
+//        System.out.println("aboveLoyaltyValue 7 => "+aboveLoyaltyValue.size());
+
+
+        productService.fetchProducts("product");
 
     }
 
