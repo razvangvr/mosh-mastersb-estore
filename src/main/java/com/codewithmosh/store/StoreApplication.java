@@ -4,12 +4,14 @@ import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.entities.Profile;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.services.ProductService;
+import com.codewithmosh.store.services.ProfileService;
 import com.codewithmosh.store.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @SpringBootApplication
 public class StoreApplication {
@@ -20,6 +22,7 @@ public class StoreApplication {
         ApplicationContext applicationContext = SpringApplication.run(StoreApplication.class, args);
         var userService = applicationContext.getBean(UserService.class);
         var productService = applicationContext.getBean(ProductService.class);
+        var profileService = applicationContext.getBean(ProfileService.class);
 
 //        userService.showRelatedEntities();
 //        userService.fetchAddresses();
@@ -45,7 +48,10 @@ public class StoreApplication {
 //        userService.fetchUser("me1@me.com");
 //        userService.fetchUsers();
 
-        productService.findProductsByPriceRange();
+//        productService.findProductsByPriceRange();
+
+        List<Profile> aboveLoyaltyValue = profileService.findAboveLoyaltyValue(7);
+        System.out.println("aboveLoyaltyValue 7 => "+aboveLoyaltyValue.size());
 
     }
 
