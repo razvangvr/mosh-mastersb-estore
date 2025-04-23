@@ -18,11 +18,11 @@ public class ProfileService {
 
     //Could not initialize proxy [com.codewithmosh.store.entities.User#2] - no session
     @Transactional
-    public List<Profile> findAboveLoyaltyValue(int greaterThan) {
-        List<Profile> profilesByLoyaltyPoints = profileRepository.findProfilesByLoyaltyPointsGreaterThan(greaterThan);
+    public List findAboveLoyaltyValue(int greaterThan) {
+        var profilesByLoyaltyPoints = profileRepository.findProfilesByLoyaltyPointsGreaterThan(greaterThan);
         profilesByLoyaltyPoints.forEach(p -> {
             System.out.println("Profile Id:"+p.getId());
-            System.out.println(p.getUser().getEmail());
+            System.out.println(p.getEmail());
         });
         return profilesByLoyaltyPoints;
     }
