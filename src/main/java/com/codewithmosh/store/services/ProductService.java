@@ -119,4 +119,9 @@ public class ProductService {
 
         return products;
     }
+
+    public void  fetchProductsByCriteria(String productName) {
+          productRepository.findByCriteria(productName, BigDecimal.valueOf(1L), null )
+                  .forEach(System.out::println);
+    }
 }

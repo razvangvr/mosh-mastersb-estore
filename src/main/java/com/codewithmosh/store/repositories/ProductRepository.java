@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository {
 
     List<Product> findByName(String name);//Spring will generate a Query like
 

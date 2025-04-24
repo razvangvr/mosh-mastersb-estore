@@ -54,7 +54,12 @@ public class StoreApplication {
 //        System.out.println("aboveLoyaltyValue 7 => "+aboveLoyaltyValue.size());
 
 
-        productService.fetchProducts("product");
+//        productService.fetchProducts("product");
+
+        /* select p1_0.id from products p1_0 where p1_0.price>=? */
+        productService.fetchProductsByCriteria(null);
+        /* select p1_0.id from products p1_0 where p1_0.name=? and p1_0.price>=?*/
+        productService.fetchProductsByCriteria("product");
 
     }
 
