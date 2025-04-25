@@ -61,7 +61,12 @@ public class StoreApplication {
         /* select p1_0.id from products p1_0 where p1_0.name=? and p1_0.price>=?*/
 //        productService.fetchProductsByCriteria("product");
 
-        productService.fetchProductsBySpecification("prod", BigDecimal.valueOf(11L), null);
+//        productService.fetchProductsBySpecification("prod", BigDecimal.valueOf(11), null);
+
+        /* select p1_0.id,p1_0.category_id,p1_0.name,p1_0.price from products p1_0 where p1_0.price>=? order by p1_0.name,p1_0.price desc */
+        productService.fetchSortedProducts( BigDecimal.valueOf(11), null);
+
+
     }
 
     private static Product basicProduct(double price) {

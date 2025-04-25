@@ -11,6 +11,7 @@ import com.codewithmosh.store.repositories.specifications.ProductSpec;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -142,5 +143,22 @@ public class ProductService {
         }
 
         productRepository.findAll(spec).forEach(System.out::println);
+    }
+
+    public void fetchSortedProducts(BigDecimal minPrice, BigDecimal maxPrice) {
+        //FROM products
+        Specification<Product> spec = Specification.where(null);
+        if (minPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceAbove(minPrice));
+        }
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceBelow(maxPrice));
+        }
+
+        Sort sort = Sort.by("name").and(
+                Sort.by("price").descending()
+        );
+
+        productRepository.findAll(spec, sort).forEach(System.out::println);
     }
 }
