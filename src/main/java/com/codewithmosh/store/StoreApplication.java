@@ -57,10 +57,11 @@ public class StoreApplication {
 //        productService.fetchProducts("product");
 
         /* select p1_0.id from products p1_0 where p1_0.price>=? */
-        productService.fetchProductsByCriteria(null);
+//        productService.fetchProductsByCriteria(null);
         /* select p1_0.id from products p1_0 where p1_0.name=? and p1_0.price>=?*/
-        productService.fetchProductsByCriteria("product");
+//        productService.fetchProductsByCriteria("product");
 
+        productService.fetchProductsBySpecification("prod", BigDecimal.valueOf(11L), null);
     }
 
     private static Product basicProduct(double price) {

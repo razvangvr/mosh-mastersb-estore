@@ -1,20 +1,21 @@
 package com.codewithmosh.store.services;
 
-import com.codewithmosh.store.repositories.ProductRepository;
 import com.codewithmosh.store.dtos.ProductSummaryDTO;
 import com.codewithmosh.store.entities.Category;
 import com.codewithmosh.store.entities.CategoryRepository;
 import com.codewithmosh.store.entities.Product;
 import com.codewithmosh.store.entities.User;
+import com.codewithmosh.store.repositories.ProductRepository;
 import com.codewithmosh.store.repositories.UserRepository;
+import com.codewithmosh.store.repositories.specifications.ProductSpec;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -120,8 +121,26 @@ public class ProductService {
         return products;
     }
 
-    public void  fetchProductsByCriteria(String productName) {
-          productRepository.findByCriteria(productName, BigDecimal.valueOf(1L), null )
-                  .forEach(System.out::println);
+    public void fetchProductsByCriteria(String productName) {
+        productRepository.findByCriteria(productName, BigDecimal.valueOf(1L), null)
+                .forEach(System.out::println);
+    }
+
+    public void fetchProductsBySpecification(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+        //FROM products
+        Specification<Product> spec = Specification.where(null);
+
+        if (name != null) {
+            spec = spec.and(ProductSpec.hasName(name));
+        }
+
+        if (minPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceAbove(minPrice));
+        }
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpec.hasPriceBelow(maxPrice));
+        }
+
+        productRepository.findAll(spec).forEach(System.out::println);
     }
 }

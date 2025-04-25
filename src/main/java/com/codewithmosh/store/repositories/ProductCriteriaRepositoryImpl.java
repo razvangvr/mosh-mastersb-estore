@@ -38,7 +38,7 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
 
         if (productName != null) {
             //name like %name%
-            predicates.add(cb.equal(root.get("name"), "%" + productName + "%"));
+            predicates.add(cb.like(root.get("name"), "%" + productName + "%"));
         }
         if (minPrice != null) {
             //Product.price >= minPrice
