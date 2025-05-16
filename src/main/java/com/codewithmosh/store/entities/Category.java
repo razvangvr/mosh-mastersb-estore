@@ -1,34 +1,39 @@
 package com.codewithmosh.store.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "categories")
-@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Byte id;
 
-    @Column(nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "category"
-            /*, cascade = CascadeType.PERSIST*/ /*! Be careful, not really necessary*/
-    )
+    @OneToMany(mappedBy = "category")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Product> products = new HashSet<>();
 
-    public Category(int categoryId) {
-        this.id = (byte) categoryId;
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Category(byte id) {
+        this.id = id;
     }
 }
